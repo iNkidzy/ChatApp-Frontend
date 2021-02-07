@@ -1,0 +1,32 @@
+<div *ngIf="name">
+  <H1>Hi {{name}}</H1>
+  <label>
+    Message:
+    <input type="text" [formControl]="message">
+  </label>
+
+  <button (click)="sendMessage()">Send Message</button>
+
+
+</div>
+
+<div *ngIf="!name">
+  <label>
+    Name:
+    <input type="text" [formControl]="nameFC">
+  </label>
+  <button (click)="sendName()">Set Name</button>
+
+</div>
+
+
+<H2> Client:</H2>
+<h4 *ngFor="let client of clients">
+  {{client}}
+</h4>
+
+<H2> Message:</H2>
+<h3 *ngFor="let message of messages">
+  {{message}}
+</h3>
+
