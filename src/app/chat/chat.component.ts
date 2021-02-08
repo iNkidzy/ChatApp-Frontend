@@ -3,6 +3,8 @@ import {ChatService} from './shared/chat.service';
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {take, takeUntil} from 'rxjs/operators';
+import {ChatClient} from './shared/chat-client.module';
+import {ChatMessage} from './shared/chat-message.model';
 
 @Component({
   selector: 'app-chat',
@@ -12,12 +14,11 @@ import {take, takeUntil} from 'rxjs/operators';
 export class ChatComponent implements OnInit, OnDestroy {
   message = new FormControl('');
   nameFC = new FormControl('');
-  messages: string[] = [];
-  clients: string[] = [];
+  messages: ChatMessage[] = [];
+  clients: ChatClient[] = [];
   unsubscribe$ = new Subject();
-  /* sub2: Subscription | undefined; */
-  name: string | undefined;
-  clients$: Observable<string[]> | undefined;
+  name: ChatMessage | undefined;
+  clients$: Observable<ChatClient[]> | undefined;
 
   constructor(private chatService: ChatService) { }
 
@@ -31,14 +32,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         console.log('message:', message);
         this.messages.push(message);
       });
-    this.chatService.listenForClients()
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe(clients => {
-        console.log('user:', clients);
-        this.clients = clients;
-      });
     this.chatService.getAllMessages()
       .pipe(
         take(1)
@@ -47,23 +40,20 @@ export class ChatComponent implements OnInit, OnDestroy {
         console.log('allMessages:', messages);
         this.messages = messages;
       });
-    this.chatService.connect();
+   // this.chatService.connect();
   }
   ngOnDestroy(): void {
     console.log('Destroyed');
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-    /*if (this.sub) {
-      this.sub.unsubscribe();
-    }
-    if (this.sub2){
-      this.sub2.unsubscribe();
-    } */
-    this.chatService.connect();
+
+    // this.chatService.disconnect();
   }
 
   sendMessage(): void {
+    console.log(this.message.value);
     this.chatService.sendMessage(this.message.value);
+    this.message.reset();
   }
 
   sendName(): void {
