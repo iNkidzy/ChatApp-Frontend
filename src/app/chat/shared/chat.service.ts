@@ -10,20 +10,29 @@ import {Socket} from 'ngx-socket-io';
 export class ChatService {
 
   constructor(private socket: Socket) {}
+  listenForMessages(): Observable<string> {
+    return this.socket
+      .fromEvent<string>('newMessage');
+  }
+
+  listenForClients(): Observable<string[]> {
+    return this.socket
+      .fromEvent<string[]>('clients');
+  }
+  getAllMessages(): Observable<string[]> {
+    return this.socket
+      .fromEvent<string[]>('allMessages');
+  }
   sendMessage(msg: string): void {
     this.socket.emit('message', msg);
   }
-
-  listenForMessages(): Observable<string> {
-    return this.socket
-      .fromEvent<string>('messages');
-  }
-
-  listenForClients(): Observable<any> {
-    return this.socket
-      .fromEvent<any>('clients');
-  }
   sendName(name: string): void {
     this.socket.emit('name', name);
+  }
+  disconnect(): void {
+    this.socket.disconnect();
+  }
+  connect(): void {
+    this.socket.connect();
   }
 }

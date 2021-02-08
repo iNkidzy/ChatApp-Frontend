@@ -1,31 +1,39 @@
 <div *ngIf="name">
-  <H1>Hi {{name}}</H1>
+  <H1 id="welcome">Hi {{name}}</H1>
   <label>
     Message:
     <input type="text" [formControl]="message">
   </label>
 
   <button (click)="sendMessage()">Send Message</button>
-
+<h3> {{message.value}}</h3>
 
 </div>
 
-<div *ngIf="!name">
-  <label>
+<div id="username" *ngIf="!name">
+  <label id="name">
     Name:
     <input type="text" [formControl]="nameFC">
   </label>
   <button (click)="sendName()">Set Name</button>
 
+  <h3> {{nameFC.value}}</h3>
 </div>
 
+<div *ngIf="clients$ | async as clients">
+  <ul>
+    <li *ngFor="let client of clients">
+             {{client}}
+    </li>
+  </ul>
+</div>
 
-<H2> Client:</H2>
+<H2 id="username1"> Username:</H2>
 <h4 *ngFor="let client of clients">
   {{client}}
 </h4>
 
-<H2> Message:</H2>
+<H2 id="message"> Message:</H2>
 <h3 *ngFor="let message of messages">
   {{message}}
 </h3>
