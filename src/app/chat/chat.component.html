@@ -15,6 +15,14 @@
   </h4>
 
 </div>
+<div *ngIf="clients$ | async as clients">
+  <h5>Current users online: {{clients.length}}</h5>
+  <ul>
+    <li *ngFor="let client of clients">
+      {{client.name}}
+    </li>
+  </ul>
+</div>
 
 <div id="username" *ngIf="!chatClient">
   <label id="name">

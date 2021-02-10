@@ -21,7 +21,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   clients$: Observable<ChatClient[]> | undefined;
   error$: Observable<string> | undefined;
   chatClient: ChatClient | undefined;
-
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
@@ -46,12 +45,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (this.chatService.chatClient) {
       this.chatService.sendName(this.chatService.chatClient.name);
     }
-    /* this.messageFC.valueChanges
-      .pipe()
-      .subscribe((value) => {
-        // If value.length >0
+     // this.messageFC.valueChanges
+     // .pipe()
+     // .subscribe((value) => {
+        // if(value.length >0)
         // send event to backend I am typing
-      }); */
+    //  });
    // this.chatService.connect();
   }
   ngOnDestroy(): void {
