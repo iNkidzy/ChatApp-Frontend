@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {Socket} from 'ngx-socket-io';
 import {ChatMessage} from './chat-message.model';
 import {ChatClient} from './chat-client.module';
+import {WelcomeDto} from './welcome.dto';
 
 
 
@@ -10,6 +11,7 @@ import {ChatClient} from './chat-client.module';
   providedIn: 'root'
 })
 export class ChatService {
+  chatClient: ChatClient | undefined;
 
   constructor(private socket: Socket) {}
   listenForMessages(): Observable<ChatMessage> {
@@ -21,6 +23,15 @@ export class ChatService {
     return this.socket
       .fromEvent<ChatClient[]>('clients');
   }
+  listenForWelcome(): Observable<WelcomeDto> {
+    return this.socket
+      .fromEvent<WelcomeDto>('welcome');
+  }
+  listenForErrors(): Observable<string> {
+    return this.socket
+      .fromEvent<string>('error');
+  }
+
   getAllMessages(): Observable<ChatMessage[]> {
     return this.socket
       .fromEvent<ChatMessage[]>('allMessages');

@@ -1,5 +1,5 @@
-<div *ngIf="name">
-  <H1 id="welcome">Logged in as: {{name}}</H1>
+<div *ngIf="chatClient">
+  <H1 id="welcome">Logged in as: {{chatClient.name}}</H1>
   <label>
     Message:
     <input type="text" [formControl]="message">
@@ -16,7 +16,7 @@
 
 </div>
 
-<div id="username" *ngIf="!name">
+<div id="username" *ngIf="!chatClient">
   <label id="name">
     Name:
     <input type="text" [formControl]="nameFC">
@@ -25,6 +25,10 @@
   <button (click)="sendName()">Set Name</button>
      <h3> {{nameFC.value}}</h3>
 
+
+</div>
+<div *ngIf="error$ | async as error" class="alert alert-danger">
+    {{error}}
 </div>
 
 <div *ngIf="clients$ | async as clients">

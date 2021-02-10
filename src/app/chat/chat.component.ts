@@ -19,11 +19,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject();
   name: ChatMessage | undefined;
   clients$: Observable<ChatClient[]> | undefined;
+  error$: Observable<string> | undefined;
+  chatClient: ChatClient | undefined;
 
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.clients$ = this.chatService.listenForClients();
+    this.error$ = this.chatService.listenForErrors();
     this.chatService.listenForMessages()
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -32,22 +35,30 @@ export class ChatComponent implements OnInit, OnDestroy {
         console.log('message:', message);
         this.messages.push(message);
       });
-    this.chatService.getAllMessages()
+    this.chatService.listenForWelcome()
       .pipe(
-        take(1)
+        takeUntil(this.unsubscribe$)
       )
-      .subscribe(messages => {
-        console.log('allMessages:', messages);
-        this.messages = messages;
+      .subscribe( welcome => {
+        this.messages = welcome.messages;
+        this.chatClient = this.chatService.chatClient = welcome.client;
       });
+    if (this.chatService.chatClient) {
+      this.chatService.sendName(this.chatService.chatClient.name);
+    }
+    /* this.messageFC.valueChanges
+      .pipe()
+      .subscribe((value) => {
+        // If value.length >0
+        // send event to backend I am typing
+      }); */
    // this.chatService.connect();
   }
   ngOnDestroy(): void {
     console.log('Destroyed');
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-
-    // this.chatService.disconnect();
+   // this.chatService.disconnect();
   }
 
   sendMessage(): void {
@@ -58,8 +69,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   sendName(): void {
      if (this.nameFC.value) {
-    this.name = this.nameFC.value;
-    this.chatService.sendName(this.nameFC.value);
+       this.chatService.sendName(this.nameFC.value);
     }
   }
 }
