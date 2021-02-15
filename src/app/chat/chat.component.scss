@@ -1,9 +1,24 @@
 #username{
-  margin: 40px;
+  margin-top: 40px;
+  border-radius: 15px;
+}
 
+#inside{
+  margin: 40px 0px 20px;
 }
 #name{
-  font-size: 20px;
+  margin-left:300px;
+  font-size: 25px;
+  font-family: "Comic Sans MS", fantasy;
+  color: #512DA8;
+}
+#inputName{
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+#setname{
+  margin: 2px 400px 9px;
+  border: 2px solid #512DA8;
 }
 #username1{
   font-family: "Hiragino Kaku Gothic Std", fantasy;
@@ -14,7 +29,23 @@
   color: deepskyblue;
 }
 #welcome{
- font-family: "Hiragino Kaku Gothic Std", fantasy;
- color: blueviolet;
+  font-family: "Comic Sans MS", fantasy;
+  font-size: 25px;
+  margin-left: 10px;
+  color: #512DA8;
+}
+#namee{
+  font-family: "Comic Sans MS", fantasy;
+  font-size: 25px;
+  margin-top:-38px;
+  margin-left: 160px;
+  color: #424242;
+}
 
+#currentUsers{
+  font-size: 20px;
+  float: right;
+  margin-top:-120px;
+  right: 100px;
+  color: #512DA8;
 }
