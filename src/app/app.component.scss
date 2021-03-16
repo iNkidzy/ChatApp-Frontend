@@ -2,12 +2,13 @@
 #title{
   font-family: "Apple SD Gothic Neo", fantasy;
   font-size:35px;
-  margin: 30px 30px 30px 300px;
+  margin: 30px 0px 30px 0px;
   color: #B39DDB;
 }
-
+nav {
+  background:#512DA8;
+}
 #home{
-  margin-left: 500px;
   font-family: "Comic Sans MS", fantasy;
   font-size:30px;
   color: #9575CD;
@@ -16,7 +17,6 @@
 
 }
 #chat{
-  margin-left: 260px;
   font-family: "Comic Sans MS", fantasy;
   font-size:30px;
   color: #9575CD;
@@ -29,7 +29,7 @@
 }
 #welcome{
   background-color: black;
-  margin: 40px 200px 20px;
+  margin: 40px 0 20px 0;
   border-radius: 5px;
   border:8px solid #512DA8;
 }

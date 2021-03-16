@@ -7,7 +7,6 @@
   margin: 50px 0px 20px;
 }
 #name{
-  margin-left:300px;
   font-size: 25px;
   font-family: "Comic Sans MS", fantasy;
   color: #512DA8;
@@ -17,7 +16,6 @@
   margin-bottom: 20px;
 }
 #setname{
-  margin: 2px 400px 9px;
   border: 2px solid #512DA8;
   color: #B39DDB;
 }
@@ -33,25 +31,18 @@
 #welcome{
   font-size: 25px;
   color: #7E57C2;
-  float: left;
-  margin-top:-50px;
-  left: 100px;
+  margin-top:-95px;
 }
 #namee{
   font-family: "Comic Sans MS", fantasy;
   font-size: 25px;
-  margin-left: 150px;
-  float:left;
-  margin-top:-52px;
-  left: 100px;
   color: #9575CD;
 }
 
 #currentUsers{
   font-size: 20px;
   float: right;
-  margin-top:-48px;
-  right: 100px;
+  margin-top:-88px;
   color: #7E57C2;
 }
 
@@ -85,3 +76,7 @@
 #allmsgs{
   margin-top: -40px;
 }
+#typing{
+  color: #B39DDB;
+}
+
