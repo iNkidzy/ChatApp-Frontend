@@ -27,6 +27,10 @@ export class ChatService {
     return this.socket
       .fromEvent<WelcomeDto>('welcome');
   }
+  listenForClientTyping(): Observable<ChatClient> {
+    return this.socket
+      .fromEvent<ChatClient>('clientTyping');
+  }
   listenForErrors(): Observable<string> {
     return this.socket
       .fromEvent<string>('error');
@@ -47,5 +51,9 @@ export class ChatService {
   }
   connect(): void {
     this.socket.connect();
+  }
+
+  sendTyping(typing: boolean): void {
+    this.socket.emit('typing', typing);
   }
 }

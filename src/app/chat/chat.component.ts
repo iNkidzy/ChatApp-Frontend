@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ChatService} from './shared/chat.service';
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import {FormControl} from '@angular/forms';
-import {take, takeUntil} from 'rxjs/operators';
+import {debounceTime, take, takeUntil} from 'rxjs/operators';
 import {ChatClient} from './shared/chat-client.module';
 import {ChatMessage} from './shared/chat-message.model';
 
@@ -15,6 +15,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   message = new FormControl('');
   nameFC = new FormControl('');
   messages: ChatMessage[] = [];
+  clientsTyping: ChatClient[] = [];
   clients: ChatClient[] = [];
   unsubscribe$ = new Subject();
   name: ChatMessage | undefined;
@@ -26,6 +27,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.clients$ = this.chatService.listenForClients();
     this.error$ = this.chatService.listenForErrors();
+    this.message.valueChanges
+      .pipe(takeUntil(this.unsubscribe$),
+        debounceTime(500))
+      .subscribe((value) => {
+        this.chatService.sendTyping(value.length > 0);
+      });
     this.chatService.listenForMessages()
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -33,6 +40,17 @@ export class ChatComponent implements OnInit, OnDestroy {
       .subscribe(message => {
         console.log('message:', message);
         this.messages.push(message);
+      });
+    this.chatService.listenForClientTyping()
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe((chatClient) => {
+        if (chatClient.typing && !this.clientsTyping.find((c) => c.id === chatClient.id)){
+          this.clientsTyping.push(chatClient);
+        } else {
+          this.clientsTyping = this.clientsTyping.filter((c) => c.id !== chatClient.id);
+        }
       });
     this.chatService.listenForWelcome()
       .pipe(
