@@ -1,38 +1,63 @@
 //Angular powered Bootstrap
-<div class="container-fluid">
-  <div id="inside" *ngIf="chatClient">
-    <div class="row">
-      <h5 id="welcome">Logged in as: <span id="namee">{{ chatClient.name }}</span></h5>
+<div class="row vh-100" style="padding: 30px; padding-bottom: 20px;" *ngIf="chatClient">
+  <div class="col-4">
+    <div class="card h-100">
+      <div class="card-header">
+        Users Online
+      </div>
+      <div class="card-body">
+        <div *ngIf="clients$ | async as clients">
+          <ul>
+            <li *ngFor="let client of clients">
+              {{clients.length}} -{{chatClient.name}}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div *ngIf="clients$ | async as clients">
-      <h5 id="currentUsers">
-        Current users online:
-        <span id="curusercount"> {{ clients.length }}</span>
-      </h5>
-    </div>
+  </div>
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">
+         Chat
+        <div class="container-fluid">
+          <div id="inside" *ngIf="chatClient">
+            <div class="row">
+              <h5 id="welcome">Logged in as: <span id="namee">{{ chatClient.name }}</span></h5>
+            </div>
+            <div *ngIf="clients$ | async as clients">
+              <h5 id="currentUsers">
+                Current users online:
+                <span id="curusercount"> {{ clients.length }}</span>
+              </h5>
+            </div>
 
-    <div id="allmsgs">
-      <h4 *ngFor="let message of messages">
-        <h3 id="message">{{ message.sender?.name }} :</h3>
-        <h3 id="chatHistory">{{ message.message }}</h3>
-      </h4>
-    </div>
-
-    <div class="container-fluid px-0">
-      <div class="row">
-        <div class="col-12 col-sm-3">
-          <h5 *ngIf="clientsTyping.length > 0" id="typing">
+          </div>
+      </div>
+      <div class="card-body">
+        <div id="allmsgs">
+          <h4 *ngFor="let message of messages">
+            <h3 id="message">{{ message.sender?.name }} :</h3>
+            <h3 id="chatHistory">{{ message.message }}</h3>
+          </h4>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="container-fluid px-0">
+          <div class="row">
+            <div class="col-12 col-sm-3">
+              <h5 *ngIf="clientsTyping.length > 0" id="typing">
             <span *ngFor="let client of clientsTyping; let i = index">
               {{ client.name }}
               <span *ngIf="clientsTyping.length -1 > i">
                 ,
               </span>
             </span>
-            is typing...
-          </h5>
-        </div>
-        <div class="col-9 col-sm-11">
-          <div class="form-floating">
+                is typing...
+              </h5>
+            </div>
+            <div class="col-9 col-sm-11">
+              <div class="form-floating">
             <textarea
               id="messagebox"
               class="form-control"
@@ -40,30 +65,36 @@
               placeholder="Leave a message here"
               id="floatingTextarea"
             ></textarea>
-            <label for="floatingTextarea">Type your message here...</label>
+                <label for="floatingTextarea">Type your message here...</label>
+              </div>
+            </div>
+            <div class="col-3 col-sm-1 px-0">
+              <button class="btn btn-outline" id="sendmsg" (click)="sendMessage()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="33"
+                  height="42"
+                  fill="currentColor"
+                  class="bi bi-telegram"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"
+                  />
+                </svg>
+                Send
+              </button>
+            </div>
+
           </div>
         </div>
-        <div class="col-3 col-sm-1 px-0">
-          <button class="btn btn-outline" id="sendmsg" (click)="sendMessage()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="33"
-              height="42"
-              fill="currentColor"
-              class="bi bi-telegram"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"
-              />
-            </svg>
-            Send
-          </button>
-        </div>
-
       </div>
+
     </div>
   </div>
+
+</div>
+
 
   <div class="container" *ngIf="!chatClient">
     <div class="row justify-content-center">

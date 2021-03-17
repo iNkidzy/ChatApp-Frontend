@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ChatService} from './shared/chat.service';
+
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {debounceTime, take, takeUntil} from 'rxjs/operators';
 import {ChatClient} from './shared/chat-client.module';
 import {ChatMessage} from './shared/chat-message.model';
+import {ChatService} from './shared/chat.service';
 
 @Component({
   selector: 'app-chat',
