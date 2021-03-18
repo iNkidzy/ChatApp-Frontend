@@ -2,9 +2,7 @@
   margin-top: 40px;
   border-radius: 15px;
 }
-#inside{
-  margin: 50px 0px 20px;
-}
+
 #name{
   font-size: 25px;
   font-family: "Comic Sans MS", fantasy;
@@ -12,11 +10,14 @@
 }
 #inputName{
   margin-top: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  padding-left: 100px;
+  margin-left: 370px;
 }
 #setname{
   border: 2px solid #512DA8;
   color: #B39DDB;
+  background: #512DA8;
 }
 #username1{
   font-family: "Hiragino Kaku Gothic Std", fantasy;
@@ -34,7 +35,7 @@
 }
 #namee{
   font-family: "Comic Sans MS", fantasy;
-  font-size: 25px;
+  font-size: 20px;
   color: #9575CD;
 }
 
