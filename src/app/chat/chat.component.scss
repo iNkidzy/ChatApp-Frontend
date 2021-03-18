@@ -42,15 +42,27 @@
 #currentUsers{
   font-size: 20px;
   float: right;
-  margin-top:-88px;
-  color: #7E57C2;
+  margin-top:-65px;
+  color: #512DA8;
+}
+
+#chatHeader{
+  font-size: 20px;
+  font-style: oblique;
+  color: #512DA8;
+}
+
+#useronlineheader{
+  font-size: 20px;
+  font-style: oblique;
+  color: #512DA8;
 }
 
 #curusercount{
   font-size: 20px;
   float: right;
-  right: 120px;
-  color: #9575CD;
+  right: 135px;
+  color: #512DA8;
 }
 
 #messagebox{
@@ -60,15 +72,16 @@
 #sendmsg {
   border: 2px solid #512DA8;
   color: #B39DDB;
+  background-color: #512DA8;
 }
 
 #chatHistory{
   margin-left: 30px;
-  color: #B39DDB;
+  color: #512DA8;
 }
 #message{
   font-family: "Hiragino Kaku Gothic Std", fantasy;
-  font-size: 25px;
+  font-size: 15px;
   margin-left: 5px;
   color: #7E57C2;
 }
