@@ -1,4 +1,4 @@
-<div class="row vh-100" style="padding-top: 30px; padding-bottom: 20px;background-color: #9575CD" *ngIf="chatClient">
+<div class="row vh-100" style="padding-top: 10px; padding-bottom: 20px;background-color: #9575CD" *ngIf="chatClient">
   <div class="col-4" style="background-color: #9575CD">
     <div class="card h-100">
       <div class="card-header" style="background-color:#7E57C2">
@@ -7,7 +7,7 @@
       <div class="card-body">
         <div *ngIf="clients$ | async as clients">
           <ul>
-            <li style="color: #512DA8" *ngFor="let client of clients">
+            <li style="color: #512DA8; font-size:30px;" *ngFor="let client of clients">
               {{client.name}}
               <h5 id="currentUsers">
                 Current users online:
@@ -38,7 +38,7 @@
           </div>
       </div>
       <div class="card-footer" style="background-color: #B39DDB;border: 2px solid #512DA8; border-radius: 6px">
-        <div style="height: 10px">
+        <div style="height: 25px">
           <h5
             *ngIf="clientsTyping.length > 0" id="typing">
             <span *ngFor="let client of clientsTyping; let i = index">
