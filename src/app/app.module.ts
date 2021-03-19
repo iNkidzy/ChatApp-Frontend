@@ -18,7 +18,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3600', options: {} };
     BrowserModule,
     AppRoutingModule,
     SocketIoModule.forRoot(config),
-    NgbModule,
     BrowserAnimationsModule,
     SharedModule
   ],

@@ -7,12 +7,13 @@
   font-size: 25px;
   font-family: "Comic Sans MS", fantasy;
   color: #512DA8;
+
 }
 #inputName{
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding-left: 100px;
-  margin-left: 345px;
+ /* margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 30px;
+  margin-left: 20px; */
 }
 #setname{
   border: 2px solid #512DA8;
@@ -92,3 +93,8 @@
   padding-bottom: 25px;
 }
 
+#matcard{
+  background-color: #B39DDB;
+  border-radius: 8px;
+  border:3px solid #512DA8;
+}

@@ -1,3 +1,61 @@
+<div fxLayout="row" fxFlex >
+  <div fxLayout="column" fxFlex="20">
+    <mat-card fxFlex>
+      <mat-card-header>
+        <h5>Clients</h5>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="clients$ | async as clients">
+          <ul>
+            <li *ngFor="let client of clients">
+              {{client.name}}
+            </li>
+          </ul>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxLayout="column" fxFlex="80">
+    <mat-card fxFlex fxLayout="column">
+      <mat-card-header>
+        <h5>Hello {{chatClient.name}}</h5>
+      </mat-card-header>
+      <mat-card-content fxFlex fxLayout="column">
+        <mat-list fxFlex class="make-scrollable">
+          <mat-list-item *ngFor="let chatMessage of messages">
+            <mat-icon mat-list-icon>face</mat-icon>
+            <div mat-line class="primary-text-color">{{chatMessage.sender?.name}}</div>
+            <div mat-line>{{chatMessage.message}}</div>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <mat-form-field fxFlex>
+          <mat-label>Enter Message</mat-label>
+          <input matInput type="text" [formControl]="message">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="sendMessage()" >
+            <mat-icon fontSet="material-icons-outlined">send</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-card-actions>
+      <mat-card-footer fxFlex="30px" style="padding-left: 30px">
+        <span
+          *ngIf="clientsTyping.length > 0"
+          class="warn-text-color"
+          style="font-size: 10px">
+          Clients Typing:
+          <span *ngFor="let client of clientsTyping; let i = index">
+        {{client.name}}
+            <span *ngIf="clientsTyping.length - 1 > i">, </span>
+          </span>
+        </span>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+
+
 <div class="row vh-100" style="padding-top: 10px; padding-bottom: 20px;background-color: #9575CD" *ngIf="chatClient">
   <div class="col-4" style="background-color: #9575CD">
     <div class="card h-100">
@@ -60,21 +118,21 @@
     </div>
   </div>
 </div>
-<div fxLayout="column" fxFlex fxLayoutAlign="center center"*ngIf=" !chatClient">
-  <mat-card class="example-card">
-    <mat-card-header>
-   <!-- <div class="card-body" style="background-color: #9575CD">class="text-center" id="name"> -->
-      <mat-card-title> Hello! What is your name?</mat-card-title>
+<div fxLayout="row" fxFlex fxLayoutAlign="center center" *ngIf="!chatClient">
+  <mat-card fxFlex="30" id="matcard">
+    <mat-card-header fxLayoutAlign="center top">
+      <mat-card-title id="name"> Hello! What is your name?</mat-card-title>
     </mat-card-header>
       <mat-card-content>
-        <label for="inputName">Enter Username:</label>
-        <input type="text" id="inputName" [formControl]="nameFC">
-
-
-        <div class="row justify-content-end">
-          <button type="button" id="setname"  (click)="sendName()" class="btn btn-outline btn-block mb-4" >Continue</button>
-        </div>
+        <mat-form-field class="example-form-field" fxFlex>
+          <mat-label>Enter Username</mat-label>
+          <input matInput type="text" [formControl]="nameFC">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="sendName()">
+            <mat-icon style="font-size: 20px">send</mat-icon>
+          </button>
+        </mat-form-field>
       </mat-card-content>
   </mat-card>
 </div>
+
 

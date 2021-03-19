@@ -1,11 +1,9 @@
 <header>
   <h1 class="text-center" id="title">Welcome to {{ title }}! Let's get chatty with this appy!</h1>
   <div fxLayout="column" fxFill>
-    <div fxLayout="row">
-      <nav class="navbar bg-faded">
-        <div class="container">
-          <ul class="nav navbar-nav navbar-logo mx-auto">
-            <li class="nav-item">
+    <div fxLayout="row" fxLayoutGap="5px">
+      <ul class="nav navbar-nav navbar-logo mx-auto">
+        <li class="nav-item">
               <button class="btn btn-outline" id="home" routerLink="/">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -48,12 +46,9 @@
               </button>
             </li>
           </ul>
-        </div>
-      </nav>
     </div>
   </div>
 </header>
-
-<div class="router-flex" id="welcome">
-  <router-outlet></router-outlet>
+<div>
+  <router-outlet class="router-flex" ></router-outlet>
 </div>
