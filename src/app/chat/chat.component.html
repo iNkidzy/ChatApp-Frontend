@@ -60,22 +60,21 @@
     </div>
   </div>
 </div>
-<div class="row align-items-center justify-content-center vh-90"  *ngIf="!chatClient">
-  <div class="card" style="background-color: #9575CD">
-    <div class="card-body" style="background-color: #9575CD">
-      <h5 class="text-center" id="name">Hello! What is your name?</h5>
-      <form>
-        <div class="form-group" >
-          <label for="inputName" style="color: #512DA8; font-size: 20px">Enter Username:</label>
-          <input type="text" id="inputName" [formControl]="nameFC">
-        </div>
+<div fxLayout="column" fxFlex fxLayoutAlign="center center"*ngIf=" !chatClient">
+  <mat-card class="example-card">
+    <mat-card-header>
+   <!-- <div class="card-body" style="background-color: #9575CD">class="text-center" id="name"> -->
+      <mat-card-title> Hello! What is your name?</mat-card-title>
+    </mat-card-header>
+      <mat-card-content>
+        <label for="inputName">Enter Username:</label>
+        <input type="text" id="inputName" [formControl]="nameFC">
+
+
         <div class="row justify-content-end">
           <button type="button" id="setname"  (click)="sendName()" class="btn btn-outline btn-block mb-4" >Continue</button>
         </div>
-        <div *ngIf="error$ | async as error" class="alert alert-danger">
-          {{ error }}
-        </div>
-      </form>
-    </div>
-  </div>
+      </mat-card-content>
+  </mat-card>
 </div>
+
