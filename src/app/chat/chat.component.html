@@ -121,6 +121,7 @@
   </div>
 </div>
 -->
+
 <div fxLayout="row" fxFlex fxLayoutAlign="center center" *ngIf="!chatClient">
   <mat-card fxFlex="30" id="matcard">
     <mat-card-header fxLayoutAlign="center top">
@@ -130,7 +131,7 @@
         <mat-form-field class="example-form-field" fxFlex>
           <mat-label>Enter Username</mat-label>
           <input matInput type="text" [formControl]="nameFC">
-          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="sendName()">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="sendName()" >
             <mat-icon style="font-size: 20px">send</mat-icon>
           </button>
         </mat-form-field>

@@ -87,6 +87,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   sendName(): void {
+     console.log(this.chatClient);
      if (this.nameFC.value) {
        this.chatService.sendName(this.nameFC.value);
     }
