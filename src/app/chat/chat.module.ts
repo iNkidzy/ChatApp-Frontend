@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {SharedModule} from '../shared/shared.module';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import {SharedModule} from '../shared/shared.module';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule,
+
   ]
 })
 export class ChatModule { }
