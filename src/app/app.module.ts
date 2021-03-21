@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,7 +7,16 @@ import {Socket, SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import {MatSliderModule} from '@angular/material/slider';
-const config: SocketIoConfig = { url: 'http://localhost:3600', options: {} };
+// const config: SocketIoConfig = { url: 'http://localhost:3600', options: {} };
+
+@Injectable()
+export class SocketChat extends Socket {
+
+  constructor() {
+    super({ url: 'http://localhost:3600', options: {} });
+  }
+
+}
 
 
 @NgModule({
@@ -17,11 +26,11 @@ const config: SocketIoConfig = { url: 'http://localhost:3600', options: {} };
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocketIoModule.forRoot(config),
+    SocketIoModule,
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [SocketChat],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
