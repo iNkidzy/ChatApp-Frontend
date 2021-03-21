@@ -5,7 +5,8 @@ const routes: Routes = [
   { path: 'chats', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes)],
+  // { relativeLinkResolution: 'legacy' }
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
