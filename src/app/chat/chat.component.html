@@ -1,8 +1,8 @@
-<div fxLayout="row" fxFlex *ngIf="chatClient">
+<div fxLayout="row" fxFlex *ngIf="!chatClient" style="padding: 20px" fxLayoutGap="10px">
   <div fxLayout="column" fxFlex="20">
     <mat-card fxFlex>
       <mat-card-header>
-        <h5>Clients</h5>
+        <h5>Users</h5>
       </mat-card-header>
       <mat-card-content>
         <div *ngIf="clients$ | async as clients">
@@ -18,14 +18,14 @@
   <div fxLayout="column" fxFlex="80">
     <mat-card fxFlex fxLayout="column">
       <mat-card-header>
-        <h5>Hello {{chatClient}}</h5>
+        <p>Chat <span style="padding-left: 645px"> Hi, {{chatClient}} :) </span> </p>
       </mat-card-header>
       <mat-card-content fxFlex fxLayout="column">
         <mat-list fxFlex class="make-scrollable">
-          <mat-list-item *ngFor="let chatMessage of messages">
+          <mat-list-item *ngFor="let message of messages">
             <mat-icon mat-list-icon>face</mat-icon>
-            <div mat-line class="primary-text-color">{{chatMessage.sender?.name}}</div>
-            <div mat-line>{{chatMessage.message}}</div>
+            <div mat-line class="primary-text-color">{{message.sender?.name}}</div>
+            <div mat-line>{{message.message}}</div>
             <mat-divider></mat-divider>
           </mat-list-item>
         </mat-list>
@@ -56,7 +56,6 @@
 </div>
 
 
-// OLD
 
 <!--<div class="row vh-100" style="padding-top: 10px; padding-bottom: 20px;background-color: #9575CD" *ngIf="chatClient">
   <div class="col-4" style="background-color: #9575CD">
@@ -122,7 +121,7 @@
 </div>
 -->
 
-<div fxLayout="row" fxFlex fxLayoutAlign="center center" *ngIf="!chatClient">
+<div fxLayout="row" fxFlex fxLayoutAlign="center center" *ngIf="chatClient">
   <mat-card fxFlex="30" id="matcard">
     <mat-card-header fxLayoutAlign="center top">
       <mat-card-title id="name"> Hello! What is your name?</mat-card-title>
