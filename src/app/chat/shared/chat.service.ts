@@ -4,6 +4,8 @@ import {Socket} from 'ngx-socket-io';
 import {ChatMessage} from './chat-message.model';
 import {ChatClient} from './chat-client.module';
 import {WelcomeDto} from './welcome.dto';
+import {map} from 'rxjs/operators';
+import {MessageDto} from './message.dto';
 
 
 
@@ -36,11 +38,30 @@ export class ChatService {
       .fromEvent<string>('error');
   }
 
+  listenForConnect(): Observable<string> {
+    return this.socket
+      .fromEvent<string>('connect')
+      .pipe(
+        map(() => {
+          return this.socket.ioSocket.id;
+        })
+    );
+  }
+
+  listenForDisconnect(): Observable<string> {
+    return this.socket
+      .fromEvent<string>('disconnect')
+      .pipe(
+        map(() => {
+          return this.socket.ioSocket.id;
+        })
+      );
+  }
   getAllMessages(): Observable<ChatMessage[]> {
     return this.socket
       .fromEvent<ChatMessage[]>('allMessages');
   }
-  sendMessage(msg: string): void {
+  sendMessage(msg: MessageDto): void {
     this.socket.emit('message', msg);
   }
   sendName(name: string): void {
@@ -53,6 +74,9 @@ export class ChatService {
     this.socket.connect();
   }
 
+  connectClient(cid: string): void {
+    this.socket.emit('clientConnect', cid);
+  }
   sendTyping(typing: boolean): void {
     this.socket.emit('typing', typing);
   }

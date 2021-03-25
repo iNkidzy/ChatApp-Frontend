@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div id="inside" *ngIf="chatClient">
     <div class="row">
-      <h5 id="welcome">Logged in as: <span id="namee">{{ chatClient.name }}</span></h5>
+      <h5 id="welcome">Logged in as: <span id="namee">{{ chatClient.name }} {{chatClient.id}} </span></h5>
     </div>
     <div *ngIf="clients$ | async as clients">
       <h5 id="currentUsers">
@@ -12,6 +12,7 @@
 
     <div id="allmsgs">
       <h4 *ngFor="let message of messages">
+        {{message | json}}
         <h3 id="message">{{ message.sender?.name }} :</h3>
         <h3 id="chatHistory">{{ message.message }}</h3>
       </h4>
@@ -101,6 +102,9 @@
           {{ client.name }}
         </li>
       </ul>
+    </div>
+    <div *ngIf="!chatClient" style="color: paleturquoise">
+          You are not connected!
     </div>
   </div>
 </div>
