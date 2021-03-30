@@ -1,13 +1,23 @@
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
+import {Socket, SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-const config: SocketIoConfig = { url: 'http://localhost:3600', options: {} };
 
-
+@Injectable()
+ export class SocketChat extends Socket {
+  constructor() {
+    super({url: 'http://localhost:3600', options: {} });
+  }
+}
+@Injectable()
+export class SocketStock extends Socket {
+  constructor() {
+    super({url: 'http://localhost:3500', options: {} });
+  }
+}
 @NgModule({
   declarations: [
     AppComponent
@@ -15,10 +25,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3600', options: {} };
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocketIoModule.forRoot(config),
+    SocketIoModule,
     NgbModule
   ],
-  providers: [],
+  providers: [SocketChat, SocketStock],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

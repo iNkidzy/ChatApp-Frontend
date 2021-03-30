@@ -6,6 +6,7 @@ import {ChatClient} from './chat-client.module';
 import {WelcomeDto} from './welcome.dto';
 import {map} from 'rxjs/operators';
 import {MessageDto} from './message.dto';
+import {SocketChat} from '../../app.module';
 
 
 
@@ -15,7 +16,7 @@ import {MessageDto} from './message.dto';
 export class ChatService {
   chatClient: ChatClient | undefined;
 
-  constructor(private socket: Socket) {}
+  constructor(private socket: SocketChat) {}
   listenForMessages(): Observable<ChatMessage> {
     return this.socket
       .fromEvent<ChatMessage>('newMessage');
