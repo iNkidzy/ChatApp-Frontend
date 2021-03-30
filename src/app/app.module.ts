@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {Socket, SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @Injectable()
  export class SocketChat extends Socket {
@@ -26,7 +27,7 @@ export class SocketStock extends Socket {
     BrowserModule,
     AppRoutingModule,
     SocketIoModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [SocketChat, SocketStock],
   bootstrap: [AppComponent]
