@@ -1,1 +1,69 @@
-<p>stock works!</p>
+<h4 style="color: white"> Welcome to the Stocks</h4>
+<div class="container">
+<div class="card">
+    <div class="row">
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <p>
+                    Exchange stocks
+                </p>
+            </div>
+            <div class="col-6 d-flex flex-row-reverse">
+                <button type="button" routerLink="/stocks/create" class="btn btn-primary">
+                    Create Stock
+                </button>
+            </div>
+            <div class="col-4 border">Stocks</div>
+            <div class="col-8 border">Selected stocks</div>
+        </div>
+        <div class="row">
+            <div class="col-2 border">
+               <!-- <div *ngFor="!selected" @click="">
+                    {{stockUpdate | json}}
+                </div> -->
+                <p>Wine A/S</p>
+              <div class="list-group" id="list-tab" role="tablist" >
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Cookies A/S</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+              </div>
+            </div>
+            <div class="col-2 border">
+                <p *ngFor="let stocks of allStocks as stockDtos">
+                     <h1>{{stockD}}</h1>
+                <p>
+                    123123
+                 {{stockD | json}}
+                </p>
+            </div>
+             <div class="col-8 border">
+                <div class="text-center row">
+                   <!-- <div *ngFor="let stockD of allStocks as stockDtos">
+                      <h1>{{stockD.name}}</h1>
+                      <p>{{stockD.description}}</p>
+                      <p>{{stockD.value}}</p>
+                    </div> -->
+                  <div class="tab-content" id="nav-tabContent" *ngFor="let stock of allStocks">
+                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
+                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
+                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+                  </div>
+
+                  <button type="button" class="btn btn-primary" (click)="update()">update</button>
+                  <button type="button" class="btn btn-primary" (click)="deleteStock()">delete</button>
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style lang="scss">
+    .border {
+        border: 1px solid black;
+    }
+</style>

@@ -1,6 +1,7 @@
 export interface StockDto {
-  id: string;
+  id: number;
   name: string;
   description: string;
   value: number;
+  updatedValue: number;
 }

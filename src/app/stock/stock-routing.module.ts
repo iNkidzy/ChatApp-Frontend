@@ -5,7 +5,8 @@ import {StockCreateComponent} from './stock-create/stock-create.component';
 
 const routes: Routes = [
   { path: '', component: StockComponent },
-  { path: 'create', component: StockCreateComponent }
+  { path: 'create', component: StockCreateComponent },
+  { path: 'stocks', component: StockComponent }
   ];
 
 @NgModule({

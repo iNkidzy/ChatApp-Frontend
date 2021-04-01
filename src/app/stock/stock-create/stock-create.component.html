@@ -1,21 +1,21 @@
 <div [formGroup] ="stockForm" *ngIf="!stockCreate">
-<h3> New Stock</h3>
-  <label>
+<h3 style="color: white"> New Stock</h3>
+  <label style="color: white">
     Name:
     <input type="text" formGroupName="name">
   </label>
-  <label>
+  <label style="color: white">
     Description:
       <input type="text" formGroupName="description">
   </label>
-  <label>
+  <label style="color: white">
     Start Value:
       <input type="number" formGroupName="value">
   </label>
   <button type="button" (click)="createStock()"> Create</button>
 </div>
-<h4 *ngIf="error" style="color: darkred"> {{error}}</h4>
+<!--<h4 *ngIf="error" style="color: darkred"> {{error}}</h4> -->
 <div *ngIf="stockCreate">
   {{stockCreate | json}}
-  <button (click)="stockCreate = undefined"> Back </button>
+  <button type="button" (click)="createStock()"> Back </button>
 </div>
