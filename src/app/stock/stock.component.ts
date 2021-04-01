@@ -27,13 +27,14 @@ export class StockComponent implements OnInit {
       .subscribe(() =>
         this.stockService.getAllStock()); */
 
-    this.stockService.listenForAllStock()
-      .pipe(
-        take(1)
-      )
-      .subscribe(stocks => {
-        this.allStocks = stocks;
+        this.stockService.getAllStock()
+          .subscribe(stocks => {
+            console.log('asd');
+            this.allStocks = stocks;
       });
+    // this.stockService.getAllStock()
+    //   .subscribe((result) =>
+    //   this.allStocks = result);
   }
 
   update(): void {

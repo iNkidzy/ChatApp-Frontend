@@ -16,8 +16,11 @@ export class StockService {
   create(stock: CreateStockDto): void {
     this.socketStocks.emit('create-stock', stock);
   }
+  // getAllStock(): Observable<StockDto[]> {
+  //   return this.socketStocks.fromEvent<StockDto[]>('allStock');
+  // }
   getAllStock(): Observable<StockDto[]> {
-    return this.socketStocks.fromEvent<StockDto[]>('allStock');
+    return this.socketStocks.emit('stock');
   }
   updateStock(updatedValue: number): void {
     this.socketStocks.emit('updatedValue', updatedValue);
