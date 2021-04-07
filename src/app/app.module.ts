@@ -9,6 +9,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {NgxsModule} from '@ngxs/store';
 import {environment} from '../environments/environment';
 import {ChatState} from './chat/state/chat.state';
+import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 @Injectable()
  export class SocketChat extends Socket {
@@ -33,7 +34,8 @@ export class SocketStock extends Socket {
     NgbModule,
     NgxsModule.forRoot([ChatState], {
       developmentMode: !environment.production
-    })
+    }),
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [SocketChat, SocketStock],
   bootstrap: [AppComponent]
