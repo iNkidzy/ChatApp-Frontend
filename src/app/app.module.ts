@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import {Socket, SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
+import {NgxsModule} from '@ngxs/store';
+import {environment} from '../environments/environment';
+import {ChatState} from './chat/state/chat.state';
 
 @Injectable()
  export class SocketChat extends Socket {
@@ -28,6 +31,9 @@ export class SocketStock extends Socket {
     AppRoutingModule,
     SocketIoModule,
     NgbModule,
+    NgxsModule.forRoot([ChatState], {
+      developmentMode: !environment.production
+    })
   ],
   providers: [SocketChat, SocketStock],
   bootstrap: [AppComponent]
